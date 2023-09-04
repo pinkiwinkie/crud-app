@@ -13,7 +13,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('students.index');
+        $students = Student::all();
+        return view('students.index', ['students' => $students]);
     }
 
     /**
@@ -62,9 +63,10 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view("students.edit",['student' => $student]);
     }
 
     /**

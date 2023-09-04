@@ -1,12 +1,12 @@
 @extends('layout\template')
 
-@section('title', 'Student register | School')
+@section('title', 'Student edit | School')
 
 @section('content')
 
 <main>
   <div class="container py-4">
-    <h2>Student register</h2>
+    <h2>Student edit</h2>
     @if($errors->any())
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <ul>
@@ -17,7 +17,8 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-    <form action="{{ url('students')}}" method="post">
+    <form action="{{ url('students/'.$student->id)}}" method="post">
+      @method("PUT")
       @csrf
       <div class="mb-3 row">
         <label for="enrollment" class="col-sm-2 col-form-label">Enrollment:</label>
