@@ -34,7 +34,13 @@
           <td>{{ $student->email }}</td>
           <td>{{ $student->level->name }}</td>
           <td><a href="{{ url('students/'.$student->id.'/edit') }}" class="btn btn-warning btn-sm">Edit</a></td>
-          <td></td>
+          <td>
+            <form action="{{ url('students/'.$student->id)}}" method="post">
+              @method("DELETE")
+              @csrf
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
         </tr>
         @endforeach
       </tbody>
