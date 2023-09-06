@@ -66,15 +66,34 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-        return view("students.edit",['student' => $student]);
+        $levels = Level::all();
+        return view("students.edit",['student' => $student, 'levels' => $levels]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'enrollment' => 'required|max:10|unique:students,enrollment,' .$id,
+            'name' => 'required|max:255',
+            'birthday' => 'required|date',
+            'phone' => 'required',
+            'email' => 'nullable|email',
+            'level' => 'required',
+        ]);
+
+        $student = Student::find($id);
+        $student->enrollment = $request->input('enrollment');
+        $student->name = $request->input('name');
+        $student->birthday = $request->input('birthday');
+        $student->phone = $request->input('phone');
+        $student->email = $request->input('email');
+        $student->level_id = $request->input('level');
+        $student->save();
+
+        return view("students.message",['msg' => "Register updated"]);
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layout\template')
+@extends('layout\template') 
 
 @section('title', 'Student edit | School')
 
@@ -23,35 +23,39 @@
       <div class="mb-3 row">
         <label for="enrollment" class="col-sm-2 col-form-label">Enrollment:</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="enrollment" id="enrollment" value="{{old('enrollment')}}" required>
+          <input type="text"
+            class="form-control"
+            name="enrollment"
+            id="enrollment"
+            value="{{$student->enrollment}}" required>
         </div>
       </div>
 
       <div class="mb-3 row">
         <label for="name" class="col-sm-2 col-form-label">Full name:</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}" required>
+          <input type="text" class="form-control" name="name" id="name" value="{{$student->name}}" required>
         </div>
       </div>
 
       <div class="mb-3 row">
         <label for="birthday" class="col-sm-2 col-form-label">Birthday:</label>
         <div class="col-sm-5">
-          <input type="date" class="form-control" name="birthday" id="birthday" value="{{old('birthday')}}" required>
+          <input type="date" class="form-control" name="birthday" id="birthday" value="{{$student->birthday}}" required>
         </div>
       </div>
 
       <div class="mb-3 row">
         <label for="phone" class="col-sm-2 col-form-label">Phone number:</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="phone" id="phone" value="{{old('phone')}}" required>
+          <input type="text" class="form-control" name="phone" id="phone" value="{{$student->phone}}" required>
         </div>
       </div>
 
       <div class="mb-3 row">
         <label for="email" class="col-sm-2 col-form-label">Email:</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="email" id="email" value="{{old('email')}}">
+          <input type="text" class="form-control" name="email" id="email" value="{{$student->email}}">
         </div>
       </div>
 
@@ -61,7 +65,7 @@
           <select name="level" id="level" class="form-select" required>
             <option value="">Select a level</option>
             @foreach($levels as $level)
-            <option value="{{$level->id}}">{{$level->name}}</option>
+            <option value="{{$level->id}}" @if($level->id == $student->level_id){{'selected'}} @endif>{{$level->name}}</option>
             @endforeach
           </select>
         </div>
